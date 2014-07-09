@@ -1,0 +1,30 @@
+Public Class Form1
+    'Declared as global to reduce scope problems
+
+    Private Sub btnStart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStart.Click
+
+        Dim strConverter As String = "" ' Converter to string
+        Dim strOuput As String = "" ' Output
+        Dim intGrade As Integer = 0 ' Current Grade for one iteration on the loop
+        Dim intTotal As Integer = 0 ' Totaled grade
+        Dim intAverage As Integer = 0 ' Average
+
+        For intCounter As Integer = 1 To 6
+            Try ' To figure out if you are typing in a number or not
+                intGrade = InputBox("Please enter in grade " & intCounter & "", "")
+            Catch ex As Exception
+                MessageBox.Show("Please enter in a number!")
+                Exit For
+            End Try
+
+            intTotal += intGrade ' Adds the grades into one massive total
+            strConverter = intGrade.ToString(intGrade) ' Converts number to string
+            strOuput += "Grade Entered: " & strConverter & vbCrLf & "" ' This takes Grade Entered and concatenate it with the number and a line break
+            Me.lblOutput.Text = strOuput ' Ouputs grade stuff
+        Next
+
+        intAverage = intTotal \ 5 ' Calculates average
+        strOutput += "Grade Average: " & intAverage & vbCrLf & "" ' Shows Average in concatenation 
+
+    End Sub
+End Class
